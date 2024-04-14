@@ -70,6 +70,20 @@ long search_map(unsigned char *bitmap, int len, long num_zeroes) {
 // Returns: Nothing
 
 void set_map(unsigned char *map, long start, long length, int value) {
+  long end = start + length;
+
+  for (long bit=start; bit<end; bit++) {
+    int byte_index = bit / 8;
+    int bit_index = bit % 8;
+
+    if (value == 0) {
+      // clear bits
+      map[byte_index] &= ~(1 << (7 - bit_index)); 
+    } else {
+      // set bits
+      map[byte_index] |= (1 << (7 - bit_index));
+    }
+  }
 }
 
 // IMPLEMENTED FOR YOU
@@ -78,9 +92,7 @@ void set_map(unsigned char *map, long start, long length, int value) {
 // start = Starting index to mark
 // length = Number of bits to mark as "1"
 void allocate_map(unsigned char *map, long start, long length) {
-
-    
-
+  set_map(map, start, length, 1);
 }
 
 // IMPLEMENTED FOR YOU
@@ -89,6 +101,6 @@ void allocate_map(unsigned char *map, long start, long length) {
 // start = Starting index to mark
 // length = Number of bits to mark as "0"
 void free_map(unsigned char *map, long start, long length) {
-    
+  set_map(map, start, length, 0);    
 }
 
