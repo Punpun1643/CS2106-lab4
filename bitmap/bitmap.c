@@ -38,6 +38,26 @@ void print_map(unsigned char *map, int len) {
 // Returns: Index to stretch of 0's of required length, -1 if no such stretch can be found
 
 long search_map(unsigned char *bitmap, int len, long num_zeroes) {
+    int zero_count = 0;
+    int start_index = -1;
+
+    for (int i=0; i<len; i++) {
+      unsigned char mask = 0b10000000;
+      for (int j=0; j<8; j++) {
+        if (!(bitmap[i] & mask)) { // bit is 0
+          if (zero_count == 0) {
+            start_index = i * 8 + j;
+          }   
+          zero_count++;
+          if (zero_count == num_zeroes) {
+            return start_index; 
+          }
+        } else {
+          zero_count = 0; 
+        }
+        mask >>= 1;
+      }
+    }
     return -1;
 } //main
 
