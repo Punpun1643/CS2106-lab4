@@ -11,6 +11,8 @@ TNode *last_visited = NULL; // Initialize curr pointer
 void init_memory() {
   TData *initialData = (TData *) malloc(sizeof(TData));
   initialData->val = MEMSIZE;
+  initialData->start_index = 0;
+  initialData->is_allocated = false;
   TNode *initialNode = make_node(0, initialData);
   insert_node(&_memlist, initialNode, ASCENDING); 
 }
