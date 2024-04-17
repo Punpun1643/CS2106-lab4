@@ -82,23 +82,7 @@ void *mymalloc(size_t size) {
   }
   return NULL;
 }
-/*
- *TData *newData = (TData*) malloc(sizeof(TData));
-        newData->val = curr->pdata->val - size; // remaining free memory
-        newData->is_allocated = false;
-        newData->start_index = curr->pdata->start_index + size;
 
-        TNode *newNode = make_node(curr->pdata->start_index + size, newData);
-       
-        // update info of the curr node
-        curr->pdata->val = size; // allocate size memory to the curr free node
-        curr->pdata->is_allocated = true;
-        
-        // insert new node to end of llist
-        insert_node(&_memlist, newNode, ASCENDING);
-        return (void*)&_heap[curr->pdata->start_index]; 
-
- * */
 // Frees memory pointer to by ptr.
 void myfree(void *ptr) {
   if (ptr == NULL) {
