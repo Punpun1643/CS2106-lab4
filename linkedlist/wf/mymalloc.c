@@ -9,6 +9,8 @@ TNode *_memlist = NULL; // To maintain information about length
 void init_memory() {
   TData *initialData = (TData *) malloc(sizeof(TData));
   initialData->val = MEMSIZE;
+  initialData->start_index = 0;
+  initialData->is_allocated = false;
   TNode *initialNode = make_node(0, initialData);
   insert_node(&_memlist, initialNode, ASCENDING); 
 }
